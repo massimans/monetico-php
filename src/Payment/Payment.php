@@ -116,6 +116,9 @@ class Payment implements Method
     if (!$this->dateTime instanceof DateTime) {
       throw Exception::invalidDatetime();
     }
+    if (!isset($this->addressBilling)) {
+      throw Exception::bellingAddresseRequired();
+    }
   }
 
   /**
