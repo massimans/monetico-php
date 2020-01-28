@@ -12,6 +12,9 @@ class Response
   /** @var string */
   private $eptCode;
 
+  /** @var string */
+  private $fields;
+
   /** @var \DateTime */
   public $dateTime;
 
@@ -171,6 +174,7 @@ class Response
     }
 
     $this->eptCode = $data['TPE'];
+    $this->fields = $data;
 
     // ToDo: Split amount and currency with ISO4217
     $this->amount = $data['montant'];
@@ -383,7 +387,8 @@ class Response
    */
   public function validateSeal($eptCode, $securityKey, $version)
   {
-    $fields = $this->fieldsToArray($eptCode);
+    $fields = $this->fields;
+    unset($fields['MAC']);
 
     ksort($fields);
 

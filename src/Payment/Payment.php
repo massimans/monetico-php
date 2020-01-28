@@ -96,8 +96,6 @@ class Payment implements Method
     $this->currency = $data['currency'];
     $this->options = $options;
     $this->commitments = $commitments;
-
-    $this->validate();
   }
 
   /**
